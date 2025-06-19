@@ -1,9 +1,8 @@
-# Core dependencies
-streamlit
-langgraph
-sentence-transformers
-openai
-faiss-cpu
-requests
-pillow
-python-dotenv
+streamlit>=1.32.0
+langchain>=0.1.14
+langchain-community>=0.0.28
+bs4>=0.0.1
+requests>=2.31.0
+openai>=1.30.0
+faiss-cpu>=1.7.4
+tiktoken>=0.5.1
