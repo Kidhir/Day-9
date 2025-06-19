@@ -1,17 +1,7 @@
-# agents/review.py
+# Refactored agents/review.py
+from langchain.agents import tool
 
-import streamlit as st
-
-def review_and_edit(image_alts):
-    st.markdown("### 🔍 Review and Edit Alt Texts")
-    final_output = []
-
-    for i, img in enumerate(image_alts):
-        st.image(img['src'], width=300, caption=f"Image {i+1}")
-        new_alt = st.text_input(f"Alt text for Image {i+1}", value=img['alt'], key=f"alt_{i}")
-        final_output.append({
-            "src": img['src'],
-            "alt": new_alt
-        })
-
-    return final_output
+@tool
+def review_generated_text(alt_text: str) -> str:
+    """Provides an editable interface or review comments for alt text."""
+    return f"Suggested alt text: {alt_text}. You may edit before publishing."
