@@ -1,14 +1,14 @@
-# Refactored agents/image_scanner.py
-from langchain.agents import tool
+# agents/image_scanner.py using GraphState (no @tool)
 import requests
 from bs4 import BeautifulSoup
+from state import GraphState
 
-@tool
-def scan_images(url: str) -> list:
+def scan_images(state: GraphState) -> GraphState:
     """Scans a webpage and returns a list of image URLs."""
     try:
-        response = requests.get(url)
+        response = requests.get(state.url)
         soup = BeautifulSoup(response.text, 'html.parser')
-        return [img['src'] for img in soup.find_all('img') if img.get('src')]
+        image_urls = [img['src'] for img in soup.find_all('img') if img.get('src')]
+        return state.copy(update={"images": image_urls})
     except Exception as e:
-        return [f"Error scanning images: {str(e)}"]
+        return state.copy(update={"images": [f"Error scanning images: {str(e)}"]})
