@@ -1,15 +1,9 @@
 # Core dependencies
 streamlit
-langchain
 langgraph
 sentence-transformers
 openai
 faiss-cpu
-pillow
 requests
-
-# Optional: if you're using any local model serving via HTTP
-httpx
-
-# For loading and parsing files
+pillow
 python-dotenv
